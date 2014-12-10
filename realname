@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Created by Shoeb Rehman
+
+for login_name in $@
+do
+        real_name=$(ypcat passwd | grep "^$login_name:" | cut -d ':' -f5)
+        if [ -n "$real_name" ]
+        then
+                echo "$login_name: $real_name"
+        fi
+done
